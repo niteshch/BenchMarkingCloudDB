@@ -1,0 +1,23 @@
+Datacenter: datacenter1; Host: localhost/127.0.0.1; Rack: rack1
+[OVERALL], RunTime(ms), 5005.0
+[OVERALL], Throughput(ops/sec), 199.8001998001998
+[READ], Operations, 515.0
+[READ], AverageLatency(us), 1609.0660194174757
+[READ], MinLatency(us), 498.0
+[READ], MaxLatency(us), 13351.0
+[READ], 95thPercentileLatency(us), 4603.0
+[READ], 99thPercentileLatency(us), 8879.0
+[READ], Return=OK, 515
+[CLEANUP], Operations, 2.0
+[CLEANUP], AverageLatency(us), 1107460.0
+[CLEANUP], MinLatency(us), 8.0
+[CLEANUP], MaxLatency(us), 2215935.0
+[CLEANUP], 95thPercentileLatency(us), 2215935.0
+[CLEANUP], 99thPercentileLatency(us), 2215935.0
+[UPDATE], Operations, 485.0
+[UPDATE], AverageLatency(us), 1326.1092783505155
+[UPDATE], MinLatency(us), 413.0
+[UPDATE], MaxLatency(us), 14655.0
+[UPDATE], 95thPercentileLatency(us), 4077.0
+[UPDATE], 99thPercentileLatency(us), 8191.0
+[UPDATE], Return=OK, 485

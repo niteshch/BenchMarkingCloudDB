@@ -1,0 +1,177 @@
+worloada - 50/50 read/update
+workloadb - 95/5 read/update
+worloadc - 100 read
+workloadd - 95/5 read/insert
+customworkloada - 5/95 read/update
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+Cassandra
+-----------------------------------------------------------------------------------------------------------------------------
+./bin/ycsb load cassandra2-cql -P workloads/workloada -p recordcount=1000000 -p hosts=localhost
+
+./bin/ycsb run cassandra2-cql -P workloads/workloada -s -threads 2 -target 40 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/workloada-40.log
+
+./bin/ycsb run cassandra2-cql -P workloads/workloada -s -threads 2 -target 100 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/workloada-100.log
+
+./bin/ycsb run cassandra2-cql -P workloads/workloada -s -threads 2 -target 200 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/workloada-200.log
+
+./bin/ycsb run cassandra2-cql -P workloads/workloada -s -threads 2 -target 500 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/workloada-500.log
+
+
+
+./bin/ycsb run cassandra2-cql -P workloads/workloadb -s -threads 2 -target 40 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/workloadb-40.log
+
+./bin/ycsb run cassandra2-cql -P workloads/workloadb -s -threads 2 -target 100 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/workloadb-100.log
+
+./bin/ycsb run cassandra2-cql -P workloads/workloadb -s -threads 2 -target 200 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/workloadb-200.log
+
+./bin/ycsb run cassandra2-cql -P workloads/workloadb -s -threads 2 -target 500 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/workloadb-500.log
+
+
+
+./bin/ycsb run cassandra2-cql -P workloads/workloadc -s -threads 2 -target 40 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/workloadc-40.log
+
+./bin/ycsb run cassandra2-cql -P workloads/workloadc -s -threads 2 -target 100 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/workloadc-100.log
+
+./bin/ycsb run cassandra2-cql -P workloads/workloadc -s -threads 2 -target 200 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/workloadc-200.log
+
+./bin/ycsb run cassandra2-cql -P workloads/workloadc -s -threads 2 -target 500 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/workloadc-500.log
+
+
+
+./bin/ycsb run cassandra2-cql -P workloads/workloadd -s -threads 2 -target 40 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/workloadd-40.log
+
+./bin/ycsb run cassandra2-cql -P workloads/workloadd -s -threads 2 -target 100 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/workloadd-100.log
+
+./bin/ycsb run cassandra2-cql -P workloads/workloadd -s -threads 2 -target 200 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/workloadd-200.log
+
+./bin/ycsb run cassandra2-cql -P workloads/workloadd -s -threads 2 -target 500 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/workloadd-500.log
+
+
+./bin/ycsb run cassandra2-cql -P workloads/customworkloada -s -threads 2 -target 40 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/customworkloada-40.log
+
+./bin/ycsb run cassandra2-cql -P workloads/customworkloada -s -threads 2 -target 100 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/customworkloada-100.log
+
+./bin/ycsb run cassandra2-cql -P workloads/customworkloada -s -threads 2 -target 200 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/customworkloada-200.log
+
+./bin/ycsb run cassandra2-cql -P workloads/customworkloada -s -threads 2 -target 500 -p recordcount=1000000 -p hosts=localhost > ~/extern/performance_logs/cassandra/customworkloada-500.log
+-----------------------------------------------------------------------------------------------------------------------------
+HBASE
+-----------------------------------------------------------------------------------------------------------------------------
+
+export JAVA_HOME=/usr/
+export HADOOP_HOME=~/extern/hadoop
+export HADOOP_MAPRED_HOME=$HADOOP_HOME
+export HADOOP_COMMON_HOME=$HADOOP_HOME
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export YARN_HOME=$HADOOP_HOME
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin:~/extern/mongodb/bin
+export HADOOP_INSTALL=$HADOOP_HOME
+
+
+./bin/ycsb load hbase10 -P workloads/workloada -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family -p recordcount=1000000
+
+
+./bin/ycsb run hbase10 -P workloads/workloada -s -threads 2 -target 40 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/workloada-40.log
+
+./bin/ycsb run hbase10 -P workloads/workloada -s -threads 2 -target 100 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/workloada-100.log
+
+./bin/ycsb run hbase10 -P workloads/workloada -s -threads 2 -target 200 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/workloada-200.log
+
+./bin/ycsb run hbase10 -P workloads/workloada -s -threads 2 -target 500 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/workloada-500.log
+
+
+
+./bin/ycsb run hbase10 -P workloads/workloadb -s -threads 2 -target 40 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/workloadb-40.log
+
+./bin/ycsb run hbase10 -P workloads/workloadb -s -threads 2 -target 100 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/workloadb-100.log
+
+./bin/ycsb run hbase10 -P workloads/workloadb -s -threads 2 -target 200 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/workloadb-200.log
+
+./bin/ycsb run hbase10 -P workloads/workloadb -s -threads 2 -target 500 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/workloadb-500.log
+
+
+
+./bin/ycsb run hbase10 -P workloads/workloadc -s -threads 2 -target 40 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/workloadc-40.log
+
+./bin/ycsb run hbase10 -P workloads/workloadc -s -threads 2 -target 100 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/workloadc-100.log
+
+./bin/ycsb run hbase10 -P workloads/workloadc -s -threads 2 -target 200 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/workloadc-200.log
+
+./bin/ycsb run hbase10 -P workloads/workloadc -s -threads 2 -target 500 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/workloadc-500.log
+
+
+
+./bin/ycsb run hbase10 -P workloads/workloadd -s -threads 2 -target 40 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/workloadd-40.log
+
+./bin/ycsb run hbase10 -P workloads/workloadd -s -threads 2 -target 100 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/workloadd-100.log
+
+./bin/ycsb run hbase10 -P workloads/workloadd -s -threads 2 -target 200 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/workloadd-200.log
+
+./bin/ycsb run hbase10 -P workloads/workloadd -s -threads 2 -target 500 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/workloadd-500.log
+
+
+./bin/ycsb run hbase10 -P workloads/customworkloada -s -threads 2 -target 40 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/customworkloada-40.log
+
+./bin/ycsb run hbase10 -P workloads/customworkloada -s -threads 2 -target 100 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/customworkloada-100.log
+
+./bin/ycsb run hbase10 -P workloads/customworkloada -s -threads 2 -target 200 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/customworkloada-200.log
+
+./bin/ycsb run hbase10 -P workloads/customworkloada -s -threads 2 -target 500 -p recordcount=1000000 -cp /home/ubuntu/extern/hbase-1.0.3/conf -p table=usertable -p columnfamily=family > ~/extern/performance_logs/hbase/customworkloada-500.log
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+Mongo
+-----------------------------------------------------------------------------------------------------------------------------
+
+./bin/ycsb load mongodb -s -P workloads/workloada -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 -p recordcount=1000000
+
+
+./bin/ycsb run mongodb -P workloads/workloada -s -threads 2 -target 40 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/workloada-40.log
+
+./bin/ycsb run mongodb -P workloads/workloada -s -threads 2 -target 100 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/workloada-100.log
+
+./bin/ycsb run mongodb -P workloads/workloada -s -threads 2 -target 200 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/workloada-200.log
+
+./bin/ycsb run mongodb -P workloads/workloada -s -threads 2 -target 500 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/workloada-500.log
+
+
+
+./bin/ycsb run mongodb -P workloads/workloadb -s -threads 2 -target 40 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/workloadb-40.log
+
+./bin/ycsb run mongodb -P workloads/workloadb -s -threads 2 -target 100 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/workloadb-100.log
+
+./bin/ycsb run mongodb -P workloads/workloadb -s -threads 2 -target 200 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/workloadb-200.log
+
+./bin/ycsb run mongodb -P workloads/workloadb -s -threads 2 -target 500 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/workloadb-500.log
+
+
+
+./bin/ycsb run mongodb -P workloads/workloadc -s -threads 2 -target 40 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/workloadc-40.log
+
+./bin/ycsb run mongodb -P workloads/workloadc -s -threads 2 -target 100 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/workloadc-100.log
+
+./bin/ycsb run mongodb -P workloads/workloadc -s -threads 2 -target 200 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/workloadc-200.log
+
+./bin/ycsb run mongodb -P workloads/workloadc -s -threads 2 -target 500 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/workloadc-500.log
+
+
+
+./bin/ycsb run mongodb -P workloads/workloadd -s -threads 2 -target 40 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/workloadd-40.log
+
+./bin/ycsb run mongodb -P workloads/workloadd -s -threads 2 -target 100 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/workloadd-100.log
+
+./bin/ycsb run mongodb -P workloads/workloadd -s -threads 2 -target 200 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/workloadd-200.log
+
+./bin/ycsb run mongodb -P workloads/workloadd -s -threads 2 -target 500 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/workloadd-500.log
+
+
+./bin/ycsb run mongodb -P workloads/customworkloada -s -threads 2 -target 40 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/customworkloada-40.log
+
+./bin/ycsb run mongodb -P workloads/customworkloada -s -threads 2 -target 100 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/customworkloada-100.log
+
+./bin/ycsb run mongodb -P workloads/customworkloada -s -threads 2 -target 200 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/customworkloada-200.log
+
+./bin/ycsb run mongodb -P workloads/customworkloada -s -threads 2 -target 500 -p recordcount=1000000 -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 > ~/extern/performance_logs/mongo/customworkloada-500.log
