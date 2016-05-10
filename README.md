@@ -1,2 +1,2 @@
-# BenchMarkingCloudDB
-Benchmarking Cloud Databases using YCSB
+# BenchMarkingNoSQLDB
+Benchmarking NoSQL Databases using YCSB
