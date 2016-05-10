@@ -7,7 +7,7 @@ Benchmarking NoSQL Databases using YCSB
 - Venciya Antony George
 - Sarat Chandra Vysyaraju
 
-## Setup
+## Setup EC2 Instance
 1. Login to AWS EC2 console
 2. Provision an EC2 instance using publicly available `TSE_SVN_AMI` AWS AMI
 ![AMI Lookup](https://github.com/niteshch/BenchmarkingNoSQLDB/blob/master/screenshots/TSE-AMI-Provisioning.jpg?raw=true)
@@ -22,11 +22,12 @@ sudo chown ubuntu:ubuntu ~/extern/
 
 At the end of this, you will have an instance with Cassandra 3.5, HBase 1.0.3 and MongoDB 3.2.6 installed in your extern folder.
 
-## Loading Data in Database
+## Load Data in Database
 Now you can proceed to loading data into each of the above databases. You can choose any workload of your choice located inside `~/extern/ycsb-0.8.0/workloads` folder. We have chosen workloada for loading data in to the databases. 
 We inserted 1 million records in each database. Each record is of size 1 KB. Hence, the overall size of data load is approximately 1 GB. 
 
-### Start and Setup Database
+#### Setup Database
+Start the database
 - Cassandra:
 ```
 cd ~/extern/apache-cassandra-3.5
@@ -44,7 +45,7 @@ bin/start-hbase.sh
 mongod --dbpath ~/extern/mongodb/data/db/
 ```
 
-#### Create a table in Cassandra
+###### Create a table in Cassandra
 ```
 cqlsh> create keyspace ycsb
     WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor': 3 };
@@ -63,7 +64,7 @@ cqlsh> create table usertable (
     field9 varchar);
 ```
 
-#### Create a table in HBase
+###### Create a table in HBase
 ```
 hbase(main):001:0> n_splits = 200 # HBase recommends (10 * number of regionservers)
 hbase(main):002:0> create 'usertable', 'family', {SPLITS => (1..n_splits).map {|i| "user#{1000+i*(9999-1000)/n_splits}"}}
@@ -136,7 +137,7 @@ The description of the workload files is as follows:
 - workloadd - This file executes 95% read and 5% insert operations
 - customworkloada - This file executes 5% read and 95% update operations
 
-### Creating a custom workload
+#### Creating a custom workload
 One can also choose to create a custom workload. We have added `workload_template` file inside workloads/ folder of this repository. The description of some of the core properties is as follows:
 
 - fieldcount: the number of fields in a record (default: 10)
